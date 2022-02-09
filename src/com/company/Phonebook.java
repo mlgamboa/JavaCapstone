@@ -4,22 +4,41 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Phonebook {
-    private List<Contacts> myAddContacts = new ArrayList<Contacts>();
+    private List<Contacts> contactList = new ArrayList<Contacts>();
 
 
-    public List<Contacts> getMyAddContacts() {
-        return myAddContacts;
+    public List<Contacts> getContactList() {
+        return contactList;
     }
 
-    public void setMyAddContacts(List<Contacts> myAddContacts) {
-        this.myAddContacts = myAddContacts;
+    public void setContactList(List<Contacts> contactList) {
+        this.contactList = contactList;
     }
+
+
 
     public void addContact(Contacts contactInfo){
-        myAddContacts.add(contactInfo);
+        contactList.add(contactInfo);
     }
 
+
+
     public List<Contacts> viewContacts(){
-        return myAddContacts;
+        return contactList;
     }
+
+
+
+    public boolean removeContact (String firstName){
+        boolean i = false;
+        for(Contacts name: contactList){
+            if(name.getFirstName().equals(firstName)){
+                i = true;
+                contactList.remove(name);
+                break;
+            }
+        }
+        return i;
+    }
+
 }
