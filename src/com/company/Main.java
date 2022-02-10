@@ -34,7 +34,6 @@ public class Main {
                 myContacts.setEmailId(appScanner.nextLine().trim().toLowerCase());
                 System.out.println("Enter Address");
                 myContacts.setAddress(appScanner.nextLine().trim().toLowerCase());
-
                 contactList.addContact(myContacts);
                 System.out.println("");
 
@@ -63,15 +62,18 @@ public class Main {
                 System.out.println("Are you sure you want to remove "+firstName+" from the contact list? (Y/N)");
                 char choice = appScanner.nextLine().charAt(0);
                 if(choice == 'Y'){
-                    Contacts name = contactList.removeContact(firstName);
-                    if (name != null){
-                        System.out.println("Successfully removed contact");
+                    boolean exist = contactList.isExisting(firstName);
+                    if (exist){
+                        Contacts name = contactList.removeContact(firstName);
+                        if(name != null) {
+                            System.out.println("Successfully removed contact");
+                        }
                     } else
                         System.out.println("No contact(s) found");
                 }else if(choice =='N'){
                     System.out.println("Contact removal cancelled");
                 }else
-                    System.out.println("Invalid input");
+                    System.out.println("Invalid input (case sensitive)");
                 System.out.println("");
 
 
@@ -80,8 +82,9 @@ public class Main {
             } else if(n==4) {
                 System.out.println("Enter first name of contact(s) you want to update:");
                 String firstName = appScanner.nextLine().toLowerCase();
-                Contacts name = contactList.searchContact(firstName);
-                if(name != null ) {
+                boolean exist = contactList.isExisting(firstName);
+                if(exist) {
+                    Contacts name = contactList.searchContact(firstName);
                     System.out.println("[Notification] Contact(s) found!");
                     System.out.println("First Name: " + name.getFirstName());
                     System.out.println("Last Name: " + name.getLastName());
@@ -113,8 +116,9 @@ public class Main {
             } else if (n == 5){
                 System.out.println("Enter first name of contact(s) you want to search:");
                 String firstName = appScanner.nextLine().toLowerCase();
-                Contacts name = contactList.searchContact(firstName);
-                if(name != null) {
+                boolean isExist = contactList.isExisting(firstName);
+                if(isExist) {
+                    Contacts name = contactList.searchContact(firstName);
                     System.out.println("[Notification] Contact(s) found!");
                     System.out.println("First Name: " + name.getFirstName());
                     System.out.println("Last Name: " + name.getLastName());

@@ -36,8 +36,8 @@ public class Phonebook {
             if (name.getFirstName().equals(firstName)) {
                 contactList.remove(name);
                 break;
-            } else
-                remove = null;
+            } /*else
+                remove = null;*/
         }
         return remove;
     }
@@ -50,8 +50,8 @@ public class Phonebook {
            if (edit.getFirstName().equals(firstName)){
                int i = contactList.indexOf(edit);
                contactList.set(i,update);
-           } else
-               update = null;
+           } /*else
+               update = null;*/
 
        }
        return update;
@@ -65,9 +65,21 @@ public class Phonebook {
         for (Contacts name1:contactList){
             if (name1.getFirstName().equals(firstName)){
                 name = name1;
-            } else
-                name = null;
+            } /*else
+                name = null;*/
         }
         return name;
+    }
+
+
+    // [SECTION] for existing contacts checking
+    public boolean isExisting (String firstName){
+        boolean existing = false;
+        for (Contacts name: contactList){
+            if(name.getFirstName().equalsIgnoreCase(firstName)){
+                existing = true;
+            }
+        }
+        return existing;
     }
 }
