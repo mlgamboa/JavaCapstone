@@ -1,6 +1,7 @@
 package com.company;
 
 public class Contacts {
+
     private String firstName;
     private String lastName;
     private long  phoneNumber;
@@ -57,4 +58,6 @@ public class Contacts {
     public void setAddress(String address) {
         this.address = address;
     }
+
+
 }

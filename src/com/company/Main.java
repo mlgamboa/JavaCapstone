@@ -9,17 +9,18 @@ public class Main {
         Scanner appScanner = new Scanner(System.in);
 
         Phonebook contactList = new Phonebook();
-        int i = 0;
-        while(i==0){
+
+        while(true){
             System.out.println("Welcome to Phone Book Console App!");
             System.out.println("What would you like to do?");
-            System.out.println("[1] Add Contact(s) [2] Display all Contact(s) [3] Remove Contact(s) [4] Update Contact(s) [5] Search Contact(s) [6] Exit");
+            System.out.println("[1] Add Contact(s) [2] Display all Contact(s) [3] Remove Contact(s) [4] Update Contact(s) [5] Search Contact(s) [6] Exit App");
             System.out.println("===============================");
             System.out.println("Pick a number: ");
             int n = Integer.parseInt(appScanner.nextLine());
 
-            // [SECTION] Adding Contacts
 
+
+            // [SECTION] Adding Contacts
             if(n == 1){
                 Contacts myContacts = new Contacts();
                 System.out.println("Please Input Contact Details: ");
@@ -27,7 +28,7 @@ public class Main {
                 myContacts.setFirstName(appScanner.nextLine().trim());
                 System.out.println("Enter the Last Name: ");
                 myContacts.setLastName(appScanner.nextLine().trim());
-                System.out.println("Enter the Phone No. : ");
+                System.out.println("Enter the Phone No.: ");
                 myContacts.setPhoneNumber(Long.parseLong(appScanner.nextLine().trim()));
                 System.out.println("Enter Email Address: ");
                 myContacts.setEmailId(appScanner.nextLine().trim());
@@ -36,6 +37,8 @@ public class Main {
 
                 contactList.addContact(myContacts);
                 System.out.println("");
+
+
 
                 // [SECTION] Viewing Contacts
             } else if (n==2){
@@ -50,6 +53,8 @@ public class Main {
                     System.out.println("Address: "+ name.getAddress());
                     System.out.println("");
                 }
+
+
 
                 // [SECTION] Removing Contacts
             } else if (n==3){
@@ -67,17 +72,66 @@ public class Main {
                     System.out.println("Contact removal cancelled");
                 }else
                     System.out.println("Invalid input");
+                System.out.println("");
+
+
 
                 // [SECTION] Updating Contacts
-            } else if (n == 4){
+            } else if(n==4) {
+                System.out.println("Enter first name of contact(s) you want to update:");
+                String firstName = appScanner.nextLine();
+                Contacts name = contactList.searchContact(firstName);
+                System.out.println("[Notification] Contact(s) found!");
+                System.out.println("First Name: "+name.getFirstName());
+                System.out.println("Last Name: "+name.getLastName());
+                System.out.println("Email Address: "+name.getEmailId());
+                System.out.println("Phone No.: " +name.getPhoneNumber());
+                System.out.println("Address: "+ name.getAddress());
+                System.out.println("");
 
+                Contacts edit = contactList.updateContacts(firstName);
+                if(edit != null) {
+                    System.out.println("[Update Contact]");
+                    System.out.println("Enter First Name: ");
+                    edit.setFirstName(appScanner.nextLine().trim());
+                    System.out.println("Enter Last Name: ");
+                    edit.setLastName(appScanner.nextLine().trim());
+                    System.out.println("Enter Phone No.: ");
+                    edit.setPhoneNumber(Long.parseLong(appScanner.nextLine().trim()));
+                    System.out.println("Enter Email Address: ");
+                    edit.setEmailId(appScanner.nextLine().trim());
+                    System.out.println("Enter Address");
+                    edit.setAddress(appScanner.nextLine().trim());
+                    System.out.println("Contact was updated successfully");
+                } else
+                    System.out.println("No contact(s) found");
+                System.out.println("");
+
+
+
+                // [SECTION] Search Contacts
+            } else if (n == 5){
+                System.out.println("Enter first name of contact(s) you want to search:");
+                String firstName = appScanner.nextLine();
+                Contacts name = contactList.searchContact(firstName);
+                System.out.println("[Notification] Contact(s) found!");
+                System.out.println("First Name: "+name.getFirstName());
+                System.out.println("Last Name: "+name.getLastName());
+                System.out.println("Email Address: "+name.getEmailId());
+                System.out.println("Phone No.: " +name.getPhoneNumber());
+                System.out.println("Address: "+ name.getAddress());
+                System.out.println("");
+
+
+                // [SECTION] Exit program
             }else if (n == 6){
                 System.out.println("Thank you. Goodbye!");
                 System.exit(0);
 
 
-
-            }
+            }else
+                System.out.println("Invalid choice");
         }
+
     }
 }
