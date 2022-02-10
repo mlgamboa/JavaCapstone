@@ -59,5 +59,4 @@ public class Contacts {
         this.address = address;
     }
 
-
 }
