@@ -20,7 +20,6 @@ public class Main {
 
 
 
-            
             // [SECTION] Adding Contacts
             if(n == 1){
                 Contacts myContacts = new Contacts();
@@ -41,7 +40,6 @@ public class Main {
 
 
 
-
                 // [SECTION] Viewing Contacts
             } else if (n==2){
                 System.out.println("Contact List:");
@@ -55,7 +53,6 @@ public class Main {
                     System.out.println("Address: "+ name.getAddress());
                     System.out.println("");
                 }
-
 
 
 
