@@ -30,16 +30,16 @@ public class Phonebook {
 
 
     // [SECTION] Removing Contacts Method
-    public boolean removeContact(String firstName) {
-        boolean i = false;
+    public Contacts removeContact(String firstName) {
+        Contacts remove = new Contacts();
         for (Contacts name : contactList) {
             if (name.getFirstName().equals(firstName)) {
-                i = true;
                 contactList.remove(name);
                 break;
-            }
+            } else
+                remove = null;
         }
-        return i;
+        return remove;
     }
 
 
@@ -47,10 +47,12 @@ public class Phonebook {
     public Contacts updateContacts (String firstName){
        Contacts update = new Contacts();
        for (Contacts edit: contactList){
-           if (edit.getFirstName().contains(firstName)){
+           if (edit.getFirstName().equals(firstName)){
                int i = contactList.indexOf(edit);
                contactList.set(i,update);
-           }
+           } else
+               update = null;
+
        }
        return update;
     }
@@ -63,7 +65,8 @@ public class Phonebook {
         for (Contacts name1:contactList){
             if (name1.getFirstName().equals(firstName)){
                 name = name1;
-            }
+            } else
+                name = null;
         }
         return name;
     }

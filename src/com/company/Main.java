@@ -25,15 +25,15 @@ public class Main {
                 Contacts myContacts = new Contacts();
                 System.out.println("Please Input Contact Details: ");
                 System.out.println("Enter the First Name: ");
-                myContacts.setFirstName(appScanner.nextLine().trim());
+                myContacts.setFirstName(appScanner.nextLine().trim().toLowerCase());
                 System.out.println("Enter the Last Name: ");
-                myContacts.setLastName(appScanner.nextLine().trim());
+                myContacts.setLastName(appScanner.nextLine().trim().toLowerCase());
                 System.out.println("Enter the Phone No.: ");
                 myContacts.setPhoneNumber(Long.parseLong(appScanner.nextLine().trim()));
                 System.out.println("Enter Email Address: ");
-                myContacts.setEmailId(appScanner.nextLine().trim());
+                myContacts.setEmailId(appScanner.nextLine().trim().toLowerCase());
                 System.out.println("Enter Address");
-                myContacts.setAddress(appScanner.nextLine().trim());
+                myContacts.setAddress(appScanner.nextLine().trim().toLowerCase());
 
                 contactList.addContact(myContacts);
                 System.out.println("");
@@ -63,8 +63,8 @@ public class Main {
                 System.out.println("Are you sure you want to remove "+firstName+" from the contact list? (Y/N)");
                 char choice = appScanner.nextLine().charAt(0);
                 if(choice == 'Y'){
-                    boolean name = contactList.removeContact(firstName);
-                    if (name){
+                    Contacts name = contactList.removeContact(firstName);
+                    if (name != null){
                         System.out.println("Successfully removed contact");
                     } else
                         System.out.println("No contact(s) found");
@@ -79,32 +79,32 @@ public class Main {
                 // [SECTION] Updating Contacts
             } else if(n==4) {
                 System.out.println("Enter first name of contact(s) you want to update:");
-                String firstName = appScanner.nextLine();
+                String firstName = appScanner.nextLine().toLowerCase();
                 Contacts name = contactList.searchContact(firstName);
-                System.out.println("[Notification] Contact(s) found!");
-                System.out.println("First Name: "+name.getFirstName());
-                System.out.println("Last Name: "+name.getLastName());
-                System.out.println("Email Address: "+name.getEmailId());
-                System.out.println("Phone No.: " +name.getPhoneNumber());
-                System.out.println("Address: "+ name.getAddress());
-                System.out.println("");
-
-                Contacts edit = contactList.updateContacts(firstName);
-                if(edit != null) {
+                if(name != null ) {
+                    System.out.println("[Notification] Contact(s) found!");
+                    System.out.println("First Name: " + name.getFirstName());
+                    System.out.println("Last Name: " + name.getLastName());
+                    System.out.println("Email Address: " + name.getEmailId());
+                    System.out.println("Phone No.: " + name.getPhoneNumber());
+                    System.out.println("Address: " + name.getAddress());
+                    System.out.println("");
+                    // For the sequence of update method
+                    Contacts edit = contactList.updateContacts(firstName);
                     System.out.println("[Update Contact]");
                     System.out.println("Enter First Name: ");
-                    edit.setFirstName(appScanner.nextLine().trim());
+                    edit.setFirstName(appScanner.nextLine().trim().toLowerCase());
                     System.out.println("Enter Last Name: ");
-                    edit.setLastName(appScanner.nextLine().trim());
+                    edit.setLastName(appScanner.nextLine().trim().toLowerCase());
                     System.out.println("Enter Phone No.: ");
                     edit.setPhoneNumber(Long.parseLong(appScanner.nextLine().trim()));
                     System.out.println("Enter Email Address: ");
-                    edit.setEmailId(appScanner.nextLine().trim());
+                    edit.setEmailId(appScanner.nextLine().trim().toLowerCase());
                     System.out.println("Enter Address");
-                    edit.setAddress(appScanner.nextLine().trim());
+                    edit.setAddress(appScanner.nextLine().trim().toLowerCase());
                     System.out.println("Contact was updated successfully");
                 } else
-                    System.out.println("No contact(s) found");
+                    System.out.println("No Contact(s) found");
                 System.out.println("");
 
 
@@ -112,14 +112,18 @@ public class Main {
                 // [SECTION] Search Contacts
             } else if (n == 5){
                 System.out.println("Enter first name of contact(s) you want to search:");
-                String firstName = appScanner.nextLine();
+                String firstName = appScanner.nextLine().toLowerCase();
                 Contacts name = contactList.searchContact(firstName);
-                System.out.println("[Notification] Contact(s) found!");
-                System.out.println("First Name: "+name.getFirstName());
-                System.out.println("Last Name: "+name.getLastName());
-                System.out.println("Email Address: "+name.getEmailId());
-                System.out.println("Phone No.: " +name.getPhoneNumber());
-                System.out.println("Address: "+ name.getAddress());
+                if(name != null) {
+                    System.out.println("[Notification] Contact(s) found!");
+                    System.out.println("First Name: " + name.getFirstName());
+                    System.out.println("Last Name: " + name.getLastName());
+                    System.out.println("Email Address: " + name.getEmailId());
+                    System.out.println("Phone No.: " + name.getPhoneNumber());
+                    System.out.println("Address: " + name.getAddress());
+                    System.out.println("");
+                } else
+                    System.out.println("No Contact(s) found");
                 System.out.println("");
 
 
